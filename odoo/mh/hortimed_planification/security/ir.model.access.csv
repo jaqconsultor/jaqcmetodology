@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hortimed_planification_hortimed_planification,hortimed_planification.hortimed_planification,model_hortimed_planification_hortimed_planification,base.group_user,1,1,1,1

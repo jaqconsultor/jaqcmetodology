@@ -1,0 +1,13 @@
+.btn-s-1{
+  padding: 0.90rem 0.75rem;
+  width: 204px;
+  color: #656565;
+  font-size: 0.97rem;
+  border: 1px solid #979797;
+  border-radius: 0.85rem;
+
+  &:hover{
+    color: $green;
+    border-color: $green;
+  }
+}

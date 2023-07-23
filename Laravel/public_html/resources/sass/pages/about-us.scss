@@ -1,0 +1,156 @@
+#page-info-t1{
+  position: relative;
+  color: #2b2a2a;
+  overflow: hidden;
+
+  .bg-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .content-section{
+    padding-top: 35px;
+    padding-bottom: 35px;
+
+    >.row{
+      min-height: 75vh;
+    }
+
+    .col-info{
+      color: #656565;
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.4;
+
+      .title-s-1{
+        text-align: center;
+      }
+
+      .subtitle-sm{
+        color: $green;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      ul{
+        padding-left: 15px;
+        list-style-type: circle;
+      }
+
+      form{
+        position: relative;
+        display: inline-block;
+        margin-top: 25px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .form-group{
+        .form-control{
+          padding-left: 1.1rem;
+          padding-right: 1.1rem;
+          border: 1px solid $green;
+          border-radius: 0;
+        }
+      }
+
+      .btn-send{
+        padding: 0.60rem 0.75rem;
+        width: 260px;
+        max-width: 100%;
+        background-color: $green;
+        border-color: $green;
+        font-size: 1.05rem;
+        font-weight: 500;
+
+        &:hover{
+          background-color: $green;
+          border-color: $green;
+        }
+      }
+
+      a{
+        &.brown{
+          color: #b37733;
+
+          &:hover, &:active, &:focus{
+            color: #9b6425;
+          }
+        }
+      }
+
+    }
+  }
+
+  @media screen and (max-width: 991px){
+    .bg-image{
+      width: 100%;
+      opacity: 0.17;
+    }
+  }
+  @media screen and (max-width: 575px){
+    .bg-image{
+      width: 111%;
+      background-position: top center;
+    }
+
+    .content-section{
+      .col-info{
+        .page-title{
+          font-size: 1.80rem;
+        }
+      }
+    }
+  }
+
+  // ***** EXTRAS *****
+  &.about-page{
+    background-color: #ffffff;
+
+    @media screen and (max-width: 991px){
+      .bg-image{
+        // display: none;
+        opacity: 0.14;
+      }
+    }
+  }
+
+  &.contact-page{
+    background-color: #897bb0;
+
+    .content-section{
+      .col-info{
+        .page-title{
+          color: #ffffff;
+        }
+
+        .form-group{
+          .form-control{
+            border-color: #6e5e9b;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 991px){
+      .bg-image{
+        // display: none;
+        opacity: 0.14;
+      }
+
+      .content-section{
+        >.row{
+          min-height: 61vh;
+        }
+      }
+    }
+  }
+  // ****************
+
+}

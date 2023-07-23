@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ddr_citas_ddr_citas,ddr_citas.ddr_citas,model_ddr_citas_ddr_citas,base.group_user,1,1,1,1

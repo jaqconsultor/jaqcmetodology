@@ -1,0 +1,71 @@
+SELECT * from ir_module_module WHERE NAME = 'modulo_1';
+SELECT *  FROM ir_module_module_dependency WHERE module_id = 436;
+DELETE FROM ir_module_module_dependency WHERE module_id = 436;
+
+
+SELECT * from ir_model_data WHERE MODULE = 'modulo_1';
+SELECT * FROM ir_model WHERE model like 'modulo_1.%';
+SELECT * FROM ir_model_fields WHERE model like 'modulo_1.%';
+
+
+SELECT * FROM ir_model WHERE model = 'modulo_1.modulo_1';
+SELECT * FROM ir_model WHERE model = 'modulo_1.modulo_2';
+
+
+--DELETE FROM ir_model_fields WHERE model like 'modulo_1.%';
+--DELETE FROM ir_model WHERE model like 'modulo_1.%';
+--DELETE from ir_model_data WHERE MODULE = 'modulo_1';
+--DELETE from ir_module_module WHERE NAME = 'modulo_1';
+
+
+
+
+SELECT * from ir_module_module WHERE NAME = 'modulo_1';
+SELECT * from ir_module_module WHERE NAME LIKE 'module_hortimed%';
+
+
+SELECT * from ir_model_data WHERE NAME LIKE 'module_modulo%';
+SELECT * from ir_model_data WHERE NAME LIKE 'module_hortimed%';
+
+SELECT * FROM ir_model WHERE model like 'modulo_1.%';
+SELECT * FROM ir_model WHERE model like 'module_hortimed%';
+
+SELECT * FROM ir_model_fields WHERE model like 'modulo_1.%';
+SELECT * FROM ir_model_fields WHERE model like 'module_hortimed%';
+
+
+-------------------
+
+
+
+
+
+
+
+
+SELECT * from ir_module_module WHERE NAME = 'modulo_1';
+--SELECT * from ir_model_data WHERE MODULE = 'modulo_1';
+--SELECT * FROM ir_model WHERE model like 'modulo_1.%';
+--SELECT * FROM ir_model_fields WHERE model like 'modulo_1.%';
+
+--SELECT * FROM ir_model_relation WHERE MODULE = 436;
+
+
+SELECT *  FROM ir_module_module_dependency WHERE module_id = 436;
+--DELETE FROM ir_module_module_dependency WHERE module_id = 436;
+
+--ir_module_moduleUPDATE  ir_module_module  SET category_id = NULL WHERE NAME = 'modulo_1';
+--SELECT * FROM ir_module_module_dependency WHERE NAME = 'modulo_1';
+--SELECT * from ir_model_data WHERE MODULE = 'modulo_1';
+--SELECT * FROM ir_model WHERE model like 'modulo_1.%';
+--SELECT * FROM ir_model_fields WHERE model like 'modulo_1.%';
+--SELECT * FROM ir_model_relation WHERE MODULE = 436;
+
+
+--DELETE FROM ir_model_fields WHERE model like 'modulo_1.%';
+--DELETE FROM ir_model WHERE model like 'modulo_1.%';
+--DELETE from ir_model_data WHERE MODULE = 'modulo_1';
+--DELETE from ir_module_module WHERE NAME = 'modulo_1';
+
+
+

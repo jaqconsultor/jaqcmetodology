@@ -1,0 +1,65 @@
+Cómo hacer backups de MySQL/MariaDB con el comando mysqldump
+ 14/09/2017  Bases de datos, DevOps  15 comentarios
+MySQL/MariaDB mysqldump commandAunque existen diferentes métodos para realizar copias de seguridad de bases de datos MySQL o MariaDB, el más común y eficiente se basa en el uso de una herramienta nativa que tanto MySQL como MariaDB ponen a nuestra disposición para este cometido: el comando mysqldump. Como su propio nombre indica, se trata de un programa ejecutable desde la línea de comandos que permite realizar una exportación completa (dump) de todo el contenido de una base de datos o incluso de todas las bases de datos presentes en una instancia de MySQL o MariaDB en ejecución. Por supuesto también permite realizar copias de seguridad parciales, es decir, sólo de algunas tablas concretas.
+
+El comando mysqldump ofrece multitud de parámetros distintos que lo hacen muy potente y flexible. Dado que disponer de tal cantidad de opciones puede llegar a ser confuso, en este post voy a recoger varios de los ejemplos de uso más frecuente usando los parámetros más habituales y que resultan de más utilidad en el día a día del administrador de sistemas.
+
+Al ser un programa ejecutable, mysqldump precisa de un acceso por línea de comandos al servidor MySQL o que éste nos permita el acceso desde la red a través de su puerto 3306. Sin embargo, por seguridad en muchas ocasiones no disponemos ni de una cosa ni de la otra y no es posible utilizar este comando. Descubre cómo hacer un backup de MySQL de forma alternativa cuando no podemos valernos del comando mysqldump:
+
+  Backup de bases de datos MySQL con PHP
+
+1.- Backup completo de una base de datos
+Imaginemos que disponemos de un servidor de base de datos MySQL o MariaDB con varias bases de datos y que queremos hacer una copia de seguridad de todo el contenido de una de ellas. En este sentido mysqldump nos ofrece la posibilidad de exportar por separado la estructura, los datos, los triggers y los procedimientos o rutinas, o todo ello en su conjunto. Veamos en primer lugar lo que sería el ejemplo estrella, es decir, cómo realizar una exportación completa de toda la información de una base de datos que incluya estructura, datos, eventos, procedimientos, triggers y vistas:
+
+$ mysqldump -v --opt --events --routines --triggers --default-character-set=utf8 -u your_username -p your_db_name > db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+Si además queremos que se genere directamente un fichero comprimido con gzip o bzip2 sin necesidad de que se escriba en disco primero el fichero SQL resultante de la ejecución del comando mysqldump, el cual tendrá un tamaño mucho mayor, para luego realizar la compresión del mismo en un segundo paso, ejecutaremos el comando añadiendo | gzip -c después del nombre de la base de datos a exportar.
+
+Mysqldump database backup workflow
+
+Esto es muy importante sobre todo si queremos automatizar nuestros backups, ya que no hacerlo podría provocar el llenado del sistema de ficheros antes de completarse el respaldo, que resultaría fallido y además no se nos permitiría realizar más backups hasta que se liberara de nuevo espacio en disco. Así, el mismo comando del ejemplo anterior pero adaptado a un entorno desatendido de realización de copias de seguridad automáticas quedaría así:
+
+$ mysqldump --opt --events --routines --triggers --default-character-set=utf8 -u your_username --password=your_password your_db_name | gzip -c > db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql.gz
+Si en lugar de especificar una base de datos queremos hacer una copia de todas las bases de datos presentes en una instancia o servidor MySQL/MariaDB, entonces emplearemos el parámetro –all-databases en sustitución del nombre de la base de datos, en nuestro ejemplo your_db_name.
+
+1.1. Exportación sólo de la estructura de nuestra base de datos
+En este caso usaremos el parámetro –no-data para generar un fichero SQL únicamente con sentencias CREATE TABLE que nos permitan reproducir la estructura de nuestra base de datos, pero creandola vacía de contenido:
+
+$ mysqldump -v --opt --no-data --default-character-set=utf8 -u your_username -p your_db_name > db_structure_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+1.2. Exportación sólo del contenido de las distintas tablas
+Este sería el caso contrario al del ejemplo anterior, es decir, sólo queremos exportar el contenido de las tablas de nuestra base de datos generando un fichero SQL que incluye básicamente sentencias INSERT. Para ello usaremos los parámetros –no-create-info y –skip-triggers:
+
+$ mysqldump -v --opt --no-create-info --skip-triggers --default-character-set=utf8 -u your_username -p your_db_name > db_data_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+2.- Backup parcial de una base de datos
+Si sólo nos interesa hacer una copia de seguridad de un subconjunto de tablas tenemos dos opciones: especificar uno a uno el nombre de las distintas tablas que queremos respaldar, o usar el parámetro –ignore-table para que se exporten todas las tablas excepto aquellas que indiquemos expresamente que sean ignoradas:
+
+2.1. Incluir sólo un subconjunto de tablas
+$ mysqldump -v --opt --default-character-set=utf8 -u your_username -p your_db_name table1 table2 table3 > db_tables_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+2.2. Excluir un subconjunto de tablas
+ $ mysqldump -v --opt --default-character-set=utf8 -u your_username -p --ignore-table=table1 --ignore-table=table2 --ignore-table=table3 your_db_name > db_tables_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+3.- Backups remotos
+Si necesitamos realizar una copia de seguridad de una base de datos en un servidor remoto, a continuación ofrezco un par de formas distintas de conseguirlo:
+
+3.1. Accediendo al servidor MySQL a través de TCP/IP
+Si tenemos acceso al servidor MySQL a través de TCP/IP atacando su puerto 3306, podemos hacer backups de la misma forma que en los ejemplos anteriores, pero especificando con los parámetros -h y -P el nombre host y el puerto donde escucha el servidor MySQL. Es recomendable también indicar el parámetro –compress para comprimir la comunicación entre cliente y servidor, con lo cual ganaremos en velocidad y ancho de banda:
+
+$ mysqldump -v --opt -h mysql.example.com -P 3306 --compress --events --routines --triggers --default-character-set=utf8 -u your_username -p your_db_name > db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+3.2. Accediendo a través de SSH
+Si por el contrario nuestro servidor MySQL sólo es accesible mediante socket desde localhost o algún cortafuegos nos impide el acceso TCP/IP, podemos usar SSH para realizar la copia de seguridad de una máquina a otra así:
+
+$ ssh ssh_username@server "mysqldump -v --opt --events --routines --triggers --default-character-set=utf8 -u your_username --password=your_password your_db_name | gzip -c" > db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql.gz
+4.- Restauración de bases de datos
+Para restaurar los backups tomados con cualquiera de los ejemplos anteriores simplemente redireccionaremos el contenido de alguno de los ficheros .sql hacia el comando mysql y así todo su contenido será importado:
+
+$ mysql -u your_username --password=your_password your_db_name < db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql
+En el caso de que el fichero SQL contenga información de más de una base de datos (por ejemplo al haberlo generado con el parámetro –all-databases visto anteriormente) no es necesario especificar ningún nombre de base de datos en el comando.
+
+Podemos restaurar un backup comprimido sin necesidad de tener que descomprimirlo antes así:
+
+$ gunzip -c db_backup_your_db_name_`date +%Y%m%d_%H%M%S`.sql.gz | mysql -u your_username --password=your_password your_db_name
+5.- Sincronizar base de datos entre dos servidores
+Por último, podemos ir un poco más allá con el uso de tuberías y redirecciones y conseguir sincronizar el contenido completo de una base de datos en otra sin crear ningún fichero intermedio, ya estén éstas en el mismo servidor o en servidores remotos. A continuación os dejo un comando muy útil de una sola línea que os permitirá hacer esto rápidamente:
+
+$ ssh ssh_username@server "mysqldump -v --opt --events --routines --triggers --default-character-set=utf8 -u your_username --password=your_password your_db_name | gzip -c" | gunzip | mysql --password=your_password -u your_username your_db_name
+En el ejemplo anterior se realiza un backup completo de una base de datos localizada en un servidor remoto (origen) desde el servidor de destino al que queremos copiar dicha base de datos. Ambos servidores no tienen por qué compartir los mismos nombres de usuario, base de datos y contraseñas y bastará con ajustar los de un lado y los del otro adecuadamente.
+
+Mediante el mismo mecanismo se podría hacer también al contrario, es decir, ejecutar un comando desde el propio servidor origen que copie el contenido de la base de datos en un servidor remoto que en este caso sería el de destino. Te dejo a ti ponerlo en práctica a modo de ejercicio, aunque si tienes cualquier problema no dudes en contactar conmigo y te echaré una mano gustosamente.

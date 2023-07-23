@@ -1,0 +1,47 @@
+#our-team-page{
+  position: relative;
+  padding-bottom: 20px;
+  width: 100%;
+  min-height: 73vh;
+
+  .content-section{
+    .col-title{
+      padding-left: 15px;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .col-info{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align:center;
+
+      h5{
+        margin-bottom: 14px;
+        font-size: 1.20rem;
+      }
+
+      h6{
+        margin-bottom: 12px;
+        font-size: 1.08rem;
+        font-weight: 300;
+      }
+
+      p{
+        font-size: 0.77rem;
+        font-weight: 300;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1200px){
+    .content-section{
+      .col-info{
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,271 @@
+#header{
+	position: relative;
+	width: 100%;
+	z-index: 150;
+
+	// == Header ==
+	.header-content{
+		position: relative;
+		padding: 12px 0;
+		width: 100%;
+		background-color: #ffffff;
+
+		.col-logo{
+			a{
+				display: inline-block;
+
+				img{
+					height: 65px;
+				}
+			}
+		}
+
+		.col-langs{
+			flex: 0 0 126px;
+			max-width: 126px;
+			text-align: center;
+
+			.btn-lang{
+				display: inline-block;
+				color: $green;
+				font-size: 1.18rem;
+				cursor: pointer;
+
+				&:hover{
+					text-decoration: none;
+				}
+
+				&.active{
+					font-weight: 700;
+				}
+			}
+
+			.sep{
+				position: relative;
+				display: inline-block;
+				margin-left: 6px;
+				margin-right: 6px;
+				height: 14px;
+
+				&:before{
+					content: " ";
+					position: absolute;
+					top: -4px;
+					left: 0;
+					height: 22px;
+					border-left: 1px solid $green;
+				}
+			}
+		}
+
+		.col-opts{
+			flex: 0 0 66px;
+			max-width: 66px;
+			margin-left: auto;
+
+			.btn-menu{
+				display: inline-block;
+				padding: 1px 5px;
+				color: $green;
+				font-size: 1.80rem;
+				cursor: pointer;
+			}
+		}
+
+		@media screen and (max-width: 991px){
+			padding: 5px 0;
+
+			.col-logo{
+				a{
+					img{
+						height: 36px;
+					}
+				}
+			}
+
+			.col-langs{
+				flex: 0 0 110px;
+				max-width: 110px;
+
+				.btn-lang{
+					font-size: 1.05rem;
+				}
+			}
+		}
+
+		@media screen and (max-width: 575px){
+			.col-logo{
+				a{
+					img{
+						height: 30px;
+					}
+				}
+			}
+
+			.col-langs{
+				flex: 0 0 88px;
+				max-width: 88px;
+				padding-right: 5px;
+
+				.btn-lang{
+					font-size: 0.95rem;
+				}
+
+				.sep{
+					margin-left: 4px;
+					margin-right: 4px;
+
+					&:before{
+						top: 0;
+						height: 18px;
+					}
+				}
+			}
+
+			.col-opts{
+				.btn-menu{
+					font-size: 1.7rem;
+				}
+			}
+		}
+	}
+	// == ==
+
+	// ==  Variación header ==
+	&.on-g-header{
+		height: 0;
+
+		.header-content{
+			background-color: transparent;
+		}
+	}
+
+	&.on-header{
+		height: 0;
+
+		.header-content{
+			background-color: transparent;
+
+			.col-langs{
+				.btn-lang{
+					color: #ffffff;
+				}
+
+				.sep{
+					&:before{
+						border-left-color: #ffffff;
+					}
+				}
+			}
+
+			.col-opts{
+				.btn-menu{
+					color: #ffffff;
+				}
+			}
+		}
+
+		@media screen and (max-width: 991px){
+			.col-langs{
+				.btn-lang{
+					text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+				}
+
+				.sep{
+					&:before{
+						box-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+					}
+				}
+			}
+
+			.col-opts{
+				.btn-menu{
+					text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+				}
+			}
+		}
+	}
+	// == ==
+
+	// == Header Menu ==
+	.header-menu{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		min-height: 10px;
+		background-color: #ffffff;
+		visibility: hidden;
+		opacity: 0;
+		z-index: 99;
+		@include transition(250ms);
+		@include cp-property(transform, translateY(-10px));
+
+		.content{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			min-height: 10px;
+			background-color: #ffffff;
+			@include transition(250ms);
+			@include cp-property(transform, translateY(-10px));
+
+			.btn-close{
+				position: absolute;
+				top: 10px;
+				right: 17px;
+				font-size: 2.0rem;
+				color: #95060d;
+				cursor: pointer;
+				z-index: 10;
+			}
+
+			.col-logo{
+				margin-top: 16px;
+				text-align: center;
+
+				a{
+					display: inline-block;
+
+					img{
+						margin-right: 18px;
+						width: 440px;
+						max-width: 75%;
+					}
+				}
+			}
+
+			.col-menu{
+				padding-top: 26px;
+				padding-bottom: 65px;
+				margin-top: 24px;
+				min-height: calc(100vh - 89px);
+				text-align: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center top;
+				background-image: url('../images/shared/menu-bg.jpg');
+
+				.p-link{
+					margin: 10px 0;
+
+					.link{
+						display: inline-block;
+						padding: 2px 6px;
+						width: auto;
+						color: #656565;
+						font-size: 1.90rem;
+					}
+				}
+			}
+		}
+
+		&.active{
+			@include cp-property(transform, translateY(0));
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+	// == ==
+}

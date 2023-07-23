@@ -1,0 +1,136 @@
+ApiMercadoLibre
+git.exe push --progress "origin" main:main
+
+
+
+AulasCursosYa Profesores
+git.exe push --progress "origin" main:main
+Colocar el Laravel y Generar la Base de Datos
+Colocar el API para leer los Datos del Controlador llamado API
+
+
+
+tugestionadministrativa_ce
+Configurar la Base de Datos 
+Configurar el Sitio que Corra
+Commit
+git.exe push --progress "origin" main:main
+
+
+
+
+
+Crear API REST con Laravel
+En este artículo vamos a aprender a crear una API REST con Laravel, es decir, una aplicación que nos permita trabajar con una base de datos y después poder consumirla mediante cualquier otro lenguaje o un framework fronted, como podría ser vuejs, angular, etc. (Si quieres aprender a consumir la API de este articulo con VUEJS visita nuestro articulo CRUD con VueJS y Laravel).
+
+Una vez leído este, te recomendamos crear autenticación por JWT para tu API REST, que puedes aprender a hacer en nuestro artículo: Auteticación con JWT en Laravel
+
+Creación de migración, modelo y controlador.
+Crearemos una tabla en nuestra base de datos que guarde tareas. Para ello, vamos a crear una migración, un modelo y un controlador con el siguiente comando:
+
+php artisan make:model Task -mcr
+Migración
+En nuestra migración task, que se encuentra en database/migrations, le añadiremos los siguiente campos:
+
+public function up()
+    {
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name',20);
+            $table->string('description',50);
+            $table->string('content',100);
+            $table->timestamps();
+        });
+    }
+Recordar ejecutar el comando php artisan migrate para añadir nuestra tabla a la base de datos.
+
+En nuestro modelo, en la carpeta app:
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    protected $fillable = ['name', 'description', 'content'];
+}
+Y en el controlador, que se encuentra en la ruta app/http/controllers, crearemos las siguientes funciones, que explico en los comentarios del código:
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Task;
+use Illuminate\Http\Request;
+
+class TaskController extends Controller
+{
+
+    public function index(Request $request)
+    {
+        $task = Task::all();
+        return $task;
+        //Esta función nos devolvera todas las tareas que tenemos en nuestra BD
+    }
+
+    public function store(Request $request)
+    {
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->content = $request->content;
+
+        $task->save();
+        //Esta función guardará las tareas que enviaremos mediante vuejs
+    }
+    public function show(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        return $task;
+        //Esta función devolverá los datos de una tarea que hayamos seleccionado para cargar el formulario con sus datos
+    }
+
+    public function update(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->content = $request->content;
+
+        $task->save();
+
+        return $task;
+        //Esta función actualizará la tarea que hayamos seleccionado
+       
+    }
+
+    public function destroy(Request $request)
+    {
+        $task = Task::destroy($request->id);
+        return $task;
+        //Esta función obtendra el id de la tarea que hayamos seleccionado y la borrará de nuestra BD
+    }
+}
+Creación de rutas
+Para consumir esta API, lo haremos a partir de estas rutas que definiremos en nuestro archivo web.php, con ellas nos conectaremos con nuestro controlador y sus funciones:
+
+Route::get('/tareas', 'TaskController@index');
+
+Route::put('/tareas/actualizar', 'TaskController@update');
+
+Route::post('/tareas/guardar', 'TaskController@store');
+
+Route::delete('/tareas/borrar/{id}', 'TaskController@destroy');
+
+Route::get('/tareas/buscar', 'TaskController@show');
+
+De esta forma, ya tendriamos listo nuestra API REST para ser consumida, solo tendríamos que levantar nuestro aplicación mediante «php artisan serve» y comenzar a hacer peticiones a nuestras rutas definidas.
+
+Aprende a proteger tu API REST con nuestro artículo: Auteticación con JWT en Laravel.
+
+https://www.nigmacode.com/laravel/JWT-en-Laravel
+
+

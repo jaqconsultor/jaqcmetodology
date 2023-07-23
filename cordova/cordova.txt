@@ -1,0 +1,49 @@
+﻿# Descargar el NODEJS
+Version 14 lts
+
+# Para Nodejs 8
+SET OPENSSL_CONF=
+
+# instalar cordova
+npm install -g cordova 
+
+# crear aplicacion cordova
+cordova create MyAppWeb
+cd MyAppMyAppWeb
+
+# agregar plataforma de Browser 
+cordova platform add browser
+cordova run browser
+
+# Agregar plataforma de electron
+cd MyApp
+cordova platform add electron
+
+# correr la plataforma de electron
+cordova run electron --nobuild
+
+
+# Building a Project
+# There are two types of builds: A debug/development and release build.
+
+# Debug Builds
+cordova build electron
+cordova build electron — debug
+
+# Release Builds
+cordova build electron —release
+
+
+
+# crear aplicacion de un template
+cordova create MyApp com.app.mathseasy MathsEasy
+
+
+
+# Android
+cordova platform add android
+
+cordova build
+
+# device android
+cordova run android --device

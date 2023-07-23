@@ -1,0 +1,29 @@
+.col-pagination-sample-1{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+  padding-bottom: 10px;
+
+  >nav{
+    display: inline-block;
+    text-align: center;
+  }
+
+  .pagination{
+    .page-item{
+      .page-link{
+        color: $green;
+      }
+
+      &.active{
+        .page-link{
+          color: #ffffff;
+          border-color: $green;
+          background-color: $green;
+        }
+      }
+    }
+  }
+}

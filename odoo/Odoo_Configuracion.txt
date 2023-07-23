@@ -1,0 +1,14 @@
+ODOO Web Server
+password2017
+d35k-rf59-ubjm
+odoo_prueba
+Odoo
+localhost
+5432
+openpg
+openpgpwd
+
+--serviceaccount "openpgsvc" 
+--servicepassword "0p3npgsvcPWD"
+
+Execute: "C:\Users\JESUSA~1\AppData\Local\Temp\postgresql-9.5.8-1-windows.exe" --mode unattended --prefix "d:\Program Files (x86)\Odoo 12.0\PostgreSQL" --datadir "d:\Program Files (x86)\Odoo 12.0\PostgreSQL\data" --servicename "PostgreSQL_For_Odoo" --serviceaccount "openpgsvc" --servicepassword "0p3npgsvcPWD" --superaccount "openpg" --superpassword "openpgpwd" --serverport 5433

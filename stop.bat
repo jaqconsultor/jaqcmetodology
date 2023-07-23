@@ -1,0 +1,6 @@
+net stop JAQCMetodology_PHP8
+net stop JAQCMetodology_PHP73
+net stop JAQCMetodology_PHP74
+net stop JAQCMetodology_MariaDB
+net stop JAQCMetodology_MariaDBx64
+pause

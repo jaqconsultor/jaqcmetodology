@@ -1,0 +1,20 @@
+﻿ok - Conectar a una Base de Datos ACCESS
+
+- Colocar SGI en el texto
+- Colocar el Enlace a Home 
+
+- Colocar la Pestaña de la COS con dato de solo Consulta
+- Imprimir la COS en PDF ( llevar a HTML y luego a PDF )
+
+- Pantalla de Consulta por Nro de Factura, Nro de Controle 
+
+
+
+-- Programa de Composer onteniendo desde un repositorio de GITHUB
+
+git@github.com: YourAccount / repo1.git
+
+"repositories": [ { "type": "vcs", "url": "repo1:YourAccount/repo1.git" }, { "type": "vcs", "url": "repo2:YourAccount/repo2.git" } ],
+
+
+ { "require": { "vendor/my-private-repo": "dev-master" }, "repositories": [ { "type": "vcs", "url": "git@bitbucket.org:vendor/my-private-repo.git" } ] }

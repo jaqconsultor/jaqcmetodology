@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hortimed_checks_hortimed_checks,hortimed_checks.hortimed_checks,model_hortimed_checks_hortimed_checks,base.group_user,1,1,1,1

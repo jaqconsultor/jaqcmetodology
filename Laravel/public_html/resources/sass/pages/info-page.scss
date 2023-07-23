@@ -1,0 +1,57 @@
+#info-page{
+  position: relative;
+  width: 100%;
+
+  .bg{
+    position: absolute;
+    top: 0;
+    height: 100%;
+
+    &.bg-right{
+      right: 0;
+      width: 48%;
+      background-position: left center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url('../images/pages/philosophy/bg-philosophy.jpg');
+    }
+
+    &.bg-left{
+      left: 0;
+      width: 100%;
+      background-position: left center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url('../images/pages/investors/bg-investors.jpg');
+    }
+  }
+
+
+  .content-section{
+    >.row{
+      padding-top: 80px;
+      min-height: 83vh;
+    }
+
+    .col-info{
+      padding-top: 30px;
+      padding-bottom: 30px;
+      color: #656565;
+      font-size: 1.1rem;
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 991px){
+    .bg{
+      opacity: 0.5;
+
+      &.bg-left{
+        opacity: 0.3;
+        background-position: left 12% center;
+      }
+    }
+  }
+
+}

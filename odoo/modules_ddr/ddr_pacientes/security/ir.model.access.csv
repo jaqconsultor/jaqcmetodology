@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ddr_pacientes_ddr_pacientes,ddr_pacientes.ddr_pacientes,model_ddr_pacientes_ddr_pacientes,base.group_user,1,1,1,1

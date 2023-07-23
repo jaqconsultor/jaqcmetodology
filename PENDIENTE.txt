@@ -1,0 +1,41 @@
+
+- Colocar la Base de Datos Postgres x32 como Servicio
+
+- Instalar el PHPMYAdmin para Administrar la Base de Datos de MARIADB
+- Instalar el PHPADMINER
+
+- Que Funcione el PHP56 como servidor de paginas WEB en la ruta especificada
+- instalar los servicios php 56
+
+- Colocar en un Futuro el Servicio de Python para Paginas Web como Servicio
+- Colocar en un Futuro el Servicio de Tomcat para paginas Web y Servicios Backed
+
+- Intentar implementar Backed Symfony, Laravel
+
+- Implementar Swagger
+
+Objetivos de la Metodologia
+- Crear Aplicaciones Multiplataforma
+Desktop Con JAVA Con PowerBuilder Con Cordova
+
+Metodologia
+Archivo de Configuration SQLITE del Proyecto
+
+Que Genere Codigo 
+MCV CodeIgniter Laravel Symfony ThimeLife 
+FrameWork WEB2PY para Hacer Sistema
+
+Que Genere Maqueta STILSTA FrontEnd
+
+Que Genere 
+FrontEnd STISLA
+y Backend CodeIngniter, Laravel, Symfony, JAVA
+
+Base de Datos
+MySQL, MariaDB, Postgres, SQLITE
+Access, ANYWHERE 8
+
+Lenguaje para Hacer la MEtodologs
+PowerBuilder
+JAVA
+Web CodeIgniter, Laravel

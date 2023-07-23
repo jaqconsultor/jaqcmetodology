@@ -1,0 +1,55 @@
+body,html{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	color: #656565;
+}
+
+p,h1,h2,h3,h4,h5,h6{
+	margin-bottom: 0px;
+}
+
+.block-body{
+	position: relative;
+	height: 100vh;
+	overflow: hidden;
+}
+
+// == Large container ==
+.oversized-container{
+	@media screen and (min-width: 992px){
+		max-width: 98%;
+	}
+	@media screen and (min-width: 1670px){
+		max-width: 1620px;
+	}
+}
+// == ==
+
+// == Medium container ==
+.med-container{
+	@media screen and (min-width: 1200px){
+		max-width: 100%;
+	}
+
+	@media screen and (min-width: 1370px){
+		max-width: 1340px;
+	}
+}
+// == ==
+
+// Backgrounds
+.placed-backg{
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+// Remove outline
+select:focus, select:active, select:hover, button:focus, button:active, button:hover,
+input:focus, input:active, input:hover, textarea:focus, textarea:active, textarea:hover{
+  box-shadow: none !important;
+  outline: none !important;
+}
+.custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow:none !important;
+}
